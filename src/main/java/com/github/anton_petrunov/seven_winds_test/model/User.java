@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @AllArgsConstructor
@@ -25,19 +22,22 @@ public class User {
     @Column(name = "email", nullable = false)
     @NotNull
     @NotBlank
+    @NotEmpty
     @Size(min = 3, max = 128)
     private String email;
 
     @Column(name = "surname", nullable = false)
-    @Size(min = 3, max = 128)
+    @Size(max = 128)
     @NotNull
     @NotBlank
+    @NotEmpty
     private String surname;
 
     @Column(name = "name", nullable = false)
     @NotNull
     @NotBlank
-    @Size(min = 3, max = 128)
+    @NotEmpty
+    @Size(max = 128)
     private String name;
 
     @Column(name = "patronymic")
@@ -47,6 +47,7 @@ public class User {
     @Column(name = "phone", nullable = false)
     @NotNull
     @NotBlank
-    @Size(min = 5, max = 32)
+    @NotEmpty
+    @Size(max = 32)
     private String phone;
 }
