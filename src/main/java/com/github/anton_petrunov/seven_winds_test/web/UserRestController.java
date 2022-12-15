@@ -13,6 +13,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNew;
+import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNotFoundWithId;
+
 @RestController
 @RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
@@ -31,13 +34,14 @@ public class UserRestController {
     @GetMapping(value = "/{id}")
     public User get(@PathVariable Integer id) {
         log.info("get user {}", id);
-        return userRepository.findById(id).orElseThrow();
+        return checkNotFoundWithId(userRepository.findById(id).orElseThrow(), id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> create(@RequestBody User user) {
         log.info("create new {}", user);
+        checkNew(user);
         user = userRepository.save(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
