@@ -50,4 +50,8 @@ public class User {
     @NotEmpty
     @Size(max = 32)
     private String phone;
+
+    public boolean isNew() {
+        return id == null;
+    }
 }
