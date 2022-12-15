@@ -4,12 +4,13 @@ import com.github.anton_petrunov.seven_winds_test.model.User;
 import com.github.anton_petrunov.seven_winds_test.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,5 +32,16 @@ public class UserRestController {
     public User get(@PathVariable Integer id) {
         log.info("get user {}", id);
         return userRepository.findById(id).orElseThrow();
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<User> create(@RequestBody User user) {
+        log.info("create new {}", user);
+        user = userRepository.save(user);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .build().toUri();
+        return ResponseEntity.created(uriOfNewResource).body(user);
     }
 }
