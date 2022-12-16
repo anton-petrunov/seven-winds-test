@@ -24,15 +24,17 @@ class UserRestControllerTest {
 
     private static final String REST_URL = "/users";
 
-    private UserRestController controller;
+    private final User user1 = new User(
+            1, "petrunov.ru@gmail.com", "petrunov", "Anton", "Nikolaich", "+79312211019"
+    );
     private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
     @Test
-    void WhenAnyNumberOfUsersThenGetAllCorrect() throws Exception {
-        String expectedUsers = write(List.of(new User(1, "petrunov.ru@gmail.com", "petrunov", "Anton", "Nikolaich", "+79312211019")));
+    void whenAnyNumberOfUsersThenGetAllCorrect() throws Exception {
+        String expectedUsers = write(List.of(user1));
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -40,9 +42,24 @@ class UserRestControllerTest {
                 .andExpect(content().json(expectedUsers));
     }
 
+    @Test
+    void whenUserExistsThenGetCorrect() throws Exception {
+        String expected = write(user1);
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/1"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(expected));
+    }
+
     private String write(List<User> users) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(users);
+    }
+
+    private String write(User user) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(user);
     }
 
     @PostConstruct
