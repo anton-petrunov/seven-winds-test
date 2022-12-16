@@ -1,5 +1,6 @@
 package com.github.anton_petrunov.seven_winds_test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,6 +52,7 @@ public class User {
     @Size(max = 32)
     private String phone;
 
+    @JsonIgnore
     public boolean isNew() {
         return id == null;
     }
