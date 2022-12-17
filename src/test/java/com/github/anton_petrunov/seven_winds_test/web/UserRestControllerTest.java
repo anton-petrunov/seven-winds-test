@@ -52,6 +52,41 @@ class UserRestControllerTest {
                 .andExpect(content().json(expected));
     }
 
+    @Test
+    void whenUserNotExistsThenGetNotFoundException() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/120"))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    void whenNewUserWithoutIdThenCreateCorrert() throws Exception {
+        User correctUser = new User(null, "kirilll@aa.bb", "Petrov", "Kirill", "APO", "123987");
+        mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(write(correctUser)))
+                .andDo(print())
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void whenNewUserHasIdThenCreateIllegalRequestDataException() throws Exception {
+        User newUserWithId = new User(120, "kirill@aa.bb", "Petrov", "Kirill", "APO", "234448");
+        mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(write(newUserWithId)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    void whenNewUserJsonHasErrorThenCreateBadRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content("44444"))
+                .andExpect(status().isBadRequest());
+    }
+
     private String write(List<User> users) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(users);
