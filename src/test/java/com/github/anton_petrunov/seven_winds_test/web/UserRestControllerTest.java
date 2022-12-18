@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,17 +25,19 @@ class UserRestControllerTest {
 
     private static final String REST_URL = "/users";
 
-    private final User user1 = new User(
-            1, "petrunov.ru@gmail.com", "petrunov", "Anton", "Nikolaich", "+79312211019"
-    );
+    private final User user1 = new User(1, "petrunov.ru@gmail.com",
+            "petrunov", "Anton", "Nikolaich", "+79312211019");
+    private final User user2 = new User(2, "petrunov@kirill.ru",
+            "Petrunov", "Kirill", "Antonovich", "+79312211019");
     private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
     @Test
+    @Sql({"/schema.sql", "/data.sql"})
     void whenAnyNumberOfUsersThenGetAllCorrect() throws Exception {
-        String expectedUsers = write(List.of(user1));
+        String expectedUsers = write(List.of(user1, user2));
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -53,20 +56,19 @@ class UserRestControllerTest {
     }
 
     @Test
-    void whenUserNotExistsThenGetNotFoundException() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/120"))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
-    }
-
-    @Test
     void whenNewUserWithoutIdThenCreateCorrert() throws Exception {
-        User correctUser = new User(null, "kirilll@aa.bb", "Petrov", "Kirill", "APO", "123987");
+        User correctUser = new User(null, "kirilll@aa.bb", "Petrov", "Kirill",
+                "APO", "123987");
+        User createdUser = new User(
+                3, correctUser.getEmail(), correctUser.getSurname(), correctUser.getName(),
+                correctUser.getPatronymic(), correctUser.getPhone());
+
         mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(write(correctUser)))
                 .andDo(print())
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(content().json(write(createdUser)));
     }
 
     @Test
