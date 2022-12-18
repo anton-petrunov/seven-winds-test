@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS users
     surname    VARCHAR(128)                                         NOT NULL,
     name       VARCHAR(128)                                         NOT NULL,
     patronymic VARCHAR(128),
-    phone      VARCHAR(32)
+    phone      VARCHAR(32),
+    CONSTRAINT email_idx UNIQUE (email)
 )
