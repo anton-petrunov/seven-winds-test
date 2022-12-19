@@ -25,10 +25,10 @@ class UserRestControllerTest {
 
     private static final String REST_URL = "/users";
 
-    private final User user1 = new User(1, "petrunov.ru@gmail.com",
-            "petrunov", "Anton", "Nikolaich", "+79312211019");
-    private final User user2 = new User(2, "petrunov@kirill.ru",
-            "Petrunov", "Kirill", "Antonovich", "+79312211019");
+    private final User user1 = new User(1, "petrunov.ru@gmail.com", "petrunov", "Anton", "Nikolaich", "+79312211019");
+    private final User user2 = new User(2, "petrunov@kirill.ru", "Petrunov", "Kirill", "Antonovich", "+79312211019");
+    private final User newUserWithoutId = new User(null, "kirilll@aa.bb", "Petrov", "Kirill", "APO", "123987");
+
     private MockMvc mockMvc;
 
     @Autowired
@@ -47,25 +47,23 @@ class UserRestControllerTest {
 
     @Test
     void whenUserExistsThenGetCorrect() throws Exception {
-        String expected = write(user1);
+        String expectedUser = write(user1);
         mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/1"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(expected));
+                .andExpect(content().json(expectedUser));
     }
 
     @Test
     void whenNewUserWithoutIdThenCreateCorrert() throws Exception {
-        User correctUser = new User(null, "kirilll@aa.bb", "Petrov", "Kirill",
-                "APO", "123987");
         User createdUser = new User(
-                3, correctUser.getEmail(), correctUser.getSurname(), correctUser.getName(),
-                correctUser.getPatronymic(), correctUser.getPhone());
-
+                3, newUserWithoutId.getEmail(), newUserWithoutId.getSurname(), newUserWithoutId.getName(),
+                newUserWithoutId.getPatronymic(), newUserWithoutId.getPhone()
+        );
         mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(write(correctUser)))
+                        .content(write(newUserWithoutId)))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().json(write(createdUser)));
