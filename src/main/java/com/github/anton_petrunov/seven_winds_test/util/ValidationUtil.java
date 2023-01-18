@@ -4,6 +4,7 @@ import com.github.anton_petrunov.seven_winds_test.error.IllegalRequestDataExcept
 import com.github.anton_petrunov.seven_winds_test.error.NotFoundException;
 import com.github.anton_petrunov.seven_winds_test.model.User;
 
+//TODO: сделать класс финальным
 public class ValidationUtil {
 
     public static void checkNew(User user) {
