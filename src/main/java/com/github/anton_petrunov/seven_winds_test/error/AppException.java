@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 //TODO: переименовать класс исключения AppException на что-то более конкретное
 //TODO: убрать геттер
 //TODO: сделать шаблон в виде строки (private поле), который будет являтся сообщением будущего объекта-исключения
+//TODO: правильнее будет отнаследоваться от RuntimeException
 @Getter
 public class AppException extends ResponseStatusException {
     private final ErrorAttributeOptions options;
