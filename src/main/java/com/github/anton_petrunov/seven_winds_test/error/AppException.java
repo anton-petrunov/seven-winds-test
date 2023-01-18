@@ -5,6 +5,10 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+//TODO: переименовать пакет с error на exceptions
+//TODO: переименовать класс исключения AppException на что-то более конкретное
+//TODO: убрать геттер
+//TODO: сделать шаблон в виде строки (private поле), который будет являтся сообщением будущего объекта-исключения
 @Getter
 public class AppException extends ResponseStatusException {
     private final ErrorAttributeOptions options;
