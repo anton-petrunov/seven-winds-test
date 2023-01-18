@@ -17,6 +17,9 @@ import java.util.List;
 import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNew;
 import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNotFoundWithId;
 
+//TODO: убрать static поле REST_URL, вместо этого использовать аннотацию @RequestMapping
+//TODO: добавить сервисный слой (package services), обращаться к хранилищам будем посредством API наших сервисов
+//TODO: добавить пагинацию для метода getAll(), будем возвращать данные постранично
 @RestController
 @RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
