@@ -1,7 +1,7 @@
 package com.github.anton_petrunov.seven_winds_test.web;
 
 import com.github.anton_petrunov.seven_winds_test.model.User;
-import com.github.anton_petrunov.seven_winds_test.repository.UserRepository;
+import com.github.anton_petrunov.seven_winds_test.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,28 +17,24 @@ import java.util.List;
 import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNew;
 import static com.github.anton_petrunov.seven_winds_test.util.ValidationUtil.checkNotFoundWithId;
 
-//TODO: убрать static поле REST_URL, вместо этого использовать аннотацию @RequestMapping
-//TODO: добавить сервисный слой (package services), обращаться к хранилищам будем посредством API наших сервисов
 //TODO: добавить пагинацию для метода getAll(), будем возвращать данные постранично
 @RestController
-@RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Slf4j
 public class UserRestController {
-    static final String REST_URL = "/users";
-
-    private final UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public List<User> getAll() {
         log.info("getAll users");
-        return userRepository.findAll();
+        return userService.getAll();
     }
 
     @GetMapping(value = "/{id}")
     public User get(@PathVariable Integer id) {
         log.info("get user {}", id);
-        return checkNotFoundWithId(userRepository.findById(id).orElseThrow(), id);
+        return checkNotFoundWithId(userService.get(id), id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -46,9 +42,9 @@ public class UserRestController {
     public ResponseEntity<User> create(@Valid @RequestBody User user) {
         log.info("create new {}", user);
         checkNew(user);
-        user = userRepository.save(user);
+        user = userService.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
+                .path("/users" + "/{id}")
                 .build().toUri();
         return ResponseEntity.created(uriOfNewResource).body(user);
     }
