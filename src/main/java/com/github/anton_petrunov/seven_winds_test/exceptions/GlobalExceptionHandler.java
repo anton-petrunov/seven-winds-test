@@ -1,6 +1,6 @@
-package com.github.anton_petrunov.seven_winds_test.error;
+package com.github.anton_petrunov.seven_winds_test.exceptions;
 
-import com.github.anton_petrunov.seven_winds_test.error.apierror.ApiError;
+import com.github.anton_petrunov.seven_winds_test.exceptions.apierror.ApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

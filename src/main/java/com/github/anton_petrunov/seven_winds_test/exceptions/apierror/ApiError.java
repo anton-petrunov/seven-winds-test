@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.error.apierror;
+package com.github.anton_petrunov.seven_winds_test.exceptions.apierror;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

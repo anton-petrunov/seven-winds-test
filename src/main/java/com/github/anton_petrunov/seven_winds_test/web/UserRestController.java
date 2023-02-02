@@ -1,6 +1,6 @@
 package com.github.anton_petrunov.seven_winds_test.web;
 
-import com.github.anton_petrunov.seven_winds_test.error.EntityNotFoundException;
+import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotFoundException;
 import com.github.anton_petrunov.seven_winds_test.model.User;
 import com.github.anton_petrunov.seven_winds_test.services.UserService;
 import com.github.anton_petrunov.seven_winds_test.to.UserTo;

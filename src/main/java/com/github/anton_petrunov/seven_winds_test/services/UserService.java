@@ -1,7 +1,7 @@
 package com.github.anton_petrunov.seven_winds_test.services;
 
-import com.github.anton_petrunov.seven_winds_test.error.EntityNotFoundException;
-import com.github.anton_petrunov.seven_winds_test.error.EntityNotNewException;
+import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotFoundException;
+import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotNewException;
 import com.github.anton_petrunov.seven_winds_test.model.User;
 import com.github.anton_petrunov.seven_winds_test.repository.UserRepository;
 import lombok.AllArgsConstructor;
