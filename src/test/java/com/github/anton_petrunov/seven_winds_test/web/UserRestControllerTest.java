@@ -56,6 +56,13 @@ class UserRestControllerTest {
     }
 
     @Test
+    void whenUserNotExistThenGetNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(REST_URL + "/123"))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void whenNewUserWithoutIdThenCreateCorrect() throws Exception {
         User createdUser = new User(
                 3, newUserWithoutId.getEmail(), newUserWithoutId.getSurname(), newUserWithoutId.getName(),
