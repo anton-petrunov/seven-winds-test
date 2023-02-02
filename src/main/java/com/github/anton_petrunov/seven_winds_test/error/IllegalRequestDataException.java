@@ -1,14 +1,7 @@
 package com.github.anton_petrunov.seven_winds_test.error;
 
-import org.springframework.boot.web.error.ErrorAttributeOptions;
-import org.springframework.http.HttpStatus;
-
-import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.MESSAGE;
-
-//TODO: отнаследоваться от RuntimeException
-//TODO: убрать Http-статусы
-public class IllegalRequestDataException extends AppException {
-    public IllegalRequestDataException(String msg) {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, msg, ErrorAttributeOptions.of(MESSAGE));
+public class IllegalRequestDataException extends RuntimeException {
+    public IllegalRequestDataException(String message) {
+        super(message);
     }
 }
