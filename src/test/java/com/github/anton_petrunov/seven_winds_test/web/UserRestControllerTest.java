@@ -56,7 +56,7 @@ class UserRestControllerTest {
     }
 
     @Test
-    void whenNewUserWithoutIdThenCreateCorrert() throws Exception {
+    void whenNewUserWithoutIdThenCreateCorrect() throws Exception {
         User createdUser = new User(
                 3, newUserWithoutId.getEmail(), newUserWithoutId.getSurname(), newUserWithoutId.getName(),
                 newUserWithoutId.getPatronymic(), newUserWithoutId.getPhone()
@@ -70,13 +70,13 @@ class UserRestControllerTest {
     }
 
     @Test
-    void whenNewUserHasIdThenCreateIllegalRequestDataException() throws Exception {
+    void whenNewUserHasIdThenCreateEntityNotNewException() throws Exception {
         User newUserWithId = new User(120, "kirill@aa.bb", "Petrov", "Kirill", "APO", "234448");
         mockMvc.perform(MockMvcRequestBuilders.post(REST_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(write(newUserWithId)))
                 .andDo(print())
-                .andExpect(status().isUnprocessableEntity());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
