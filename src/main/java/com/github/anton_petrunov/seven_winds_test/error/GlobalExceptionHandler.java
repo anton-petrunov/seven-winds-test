@@ -137,8 +137,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(IllegalRequestDataException.class)
-    protected ResponseEntity<Object> handleIllegalRequestData(IllegalRequestDataException ex) {
+    @ExceptionHandler(EntityNotNewException.class)
+    protected ResponseEntity<Object> handleIllegalRequestData(EntityNotNewException ex) {
         ApiError apiError = new ApiError(BAD_REQUEST);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);
