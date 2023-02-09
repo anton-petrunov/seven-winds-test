@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.to;
+package com.github.antonpetrunov.sevenwindstest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

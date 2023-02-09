@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.model;
+package com.github.antonpetrunov.sevenwindstest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

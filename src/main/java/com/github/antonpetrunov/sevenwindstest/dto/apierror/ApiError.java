@@ -1,9 +1,9 @@
-package com.github.anton_petrunov.seven_winds_test.exceptions.apierror;
+package com.github.antonpetrunov.sevenwindstest.dto.apierror;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
-import com.github.anton_petrunov.seven_winds_test.util.json.LowerCaseClassNameResolver;
+import com.github.antonpetrunov.sevenwindstest.util.json.LowerCaseClassNameResolver;
 import lombok.Data;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpStatus;

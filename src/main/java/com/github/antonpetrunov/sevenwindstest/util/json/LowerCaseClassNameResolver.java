@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.util.json;
+package com.github.antonpetrunov.sevenwindstest.util.json;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.jsontype.impl.TypeIdResolverBase;

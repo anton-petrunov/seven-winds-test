@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.exceptions.apierror;
+package com.github.antonpetrunov.sevenwindstest.dto.apierror;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package com.github.anton_petrunov.seven_winds_test.web;
+package com.github.antonpetrunov.sevenwindstest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.anton_petrunov.seven_winds_test.model.User;
+import com.github.antonpetrunov.sevenwindstest.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

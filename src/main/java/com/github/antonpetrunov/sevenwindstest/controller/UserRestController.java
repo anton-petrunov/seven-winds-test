@@ -1,9 +1,10 @@
-package com.github.anton_petrunov.seven_winds_test.web;
+package com.github.antonpetrunov.sevenwindstest.controller;
 
-import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotFoundException;
-import com.github.anton_petrunov.seven_winds_test.model.User;
-import com.github.anton_petrunov.seven_winds_test.services.UserService;
-import com.github.anton_petrunov.seven_winds_test.to.UserTo;
+import com.github.antonpetrunov.sevenwindstest.service.EntityNotFoundException;
+import com.github.antonpetrunov.sevenwindstest.model.User;
+import com.github.antonpetrunov.sevenwindstest.service.UserService;
+import com.github.antonpetrunov.sevenwindstest.dto.UserTo;
+import com.github.antonpetrunov.sevenwindstest.util.UserUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.github.anton_petrunov.seven_winds_test.util.UserUtil.createTo;
-import static com.github.anton_petrunov.seven_winds_test.util.UserUtil.createTos;
 
 //TODO: добавить пагинацию для метода getAll(), будем возвращать данные постранично
 @RestController
@@ -27,19 +25,19 @@ public class UserRestController {
     @GetMapping
     public List<UserTo> getAll() {
         log.info("getAll users");
-        return createTos(userService.getAll());
+        return UserUtil.createTos(userService.getAll());
     }
 
     @GetMapping(value = "/{id}")
     public UserTo get(@PathVariable Integer id) throws EntityNotFoundException {
         log.info("get user {}", id);
-        return createTo(userService.get(id));
+        return UserUtil.createTo(userService.get(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public UserTo create(@Valid @RequestBody User user) {
         log.info("create new {}", user);
-        return createTo(userService.create(user));
+        return UserUtil.createTo(userService.create(user));
     }
 }

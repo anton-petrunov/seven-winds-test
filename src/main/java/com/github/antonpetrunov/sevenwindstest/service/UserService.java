@@ -1,9 +1,7 @@
-package com.github.anton_petrunov.seven_winds_test.services;
+package com.github.antonpetrunov.sevenwindstest.service;
 
-import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotFoundException;
-import com.github.anton_petrunov.seven_winds_test.exceptions.EntityNotNewException;
-import com.github.anton_petrunov.seven_winds_test.model.User;
-import com.github.anton_petrunov.seven_winds_test.repository.UserRepository;
+import com.github.antonpetrunov.sevenwindstest.model.User;
+import com.github.antonpetrunov.sevenwindstest.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

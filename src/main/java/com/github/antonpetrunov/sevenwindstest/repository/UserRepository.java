@@ -1,6 +1,6 @@
-package com.github.anton_petrunov.seven_winds_test.repository;
+package com.github.antonpetrunov.sevenwindstest.repository;
 
-import com.github.anton_petrunov.seven_winds_test.model.User;
+import com.github.antonpetrunov.sevenwindstest.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

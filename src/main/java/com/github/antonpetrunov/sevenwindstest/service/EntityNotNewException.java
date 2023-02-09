@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.exceptions;
+package com.github.antonpetrunov.sevenwindstest.service;
 
 public class EntityNotNewException extends RuntimeException {
     public EntityNotNewException(Class clazz, Integer id) {

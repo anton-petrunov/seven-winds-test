@@ -1,6 +1,8 @@
-package com.github.anton_petrunov.seven_winds_test.exceptions;
+package com.github.antonpetrunov.sevenwindstest;
 
-import com.github.anton_petrunov.seven_winds_test.exceptions.apierror.ApiError;
+import com.github.antonpetrunov.sevenwindstest.dto.apierror.ApiError;
+import com.github.antonpetrunov.sevenwindstest.service.EntityNotFoundException;
+import com.github.antonpetrunov.sevenwindstest.service.EntityNotNewException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

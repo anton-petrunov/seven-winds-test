@@ -1,7 +1,7 @@
-package com.github.anton_petrunov.seven_winds_test.util;
+package com.github.antonpetrunov.sevenwindstest.util;
 
-import com.github.anton_petrunov.seven_winds_test.model.User;
-import com.github.anton_petrunov.seven_winds_test.to.UserTo;
+import com.github.antonpetrunov.sevenwindstest.model.User;
+import com.github.antonpetrunov.sevenwindstest.dto.UserTo;
 
 import java.util.List;
 

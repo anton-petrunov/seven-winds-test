@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test.exceptions;
+package com.github.antonpetrunov.sevenwindstest.service;
 
 import org.springframework.util.StringUtils;
 

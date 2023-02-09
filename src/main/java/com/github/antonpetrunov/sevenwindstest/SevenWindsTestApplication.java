@@ -1,4 +1,4 @@
-package com.github.anton_petrunov.seven_winds_test;
+package com.github.antonpetrunov.sevenwindstest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
