@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:seven-winds-test
+    name: sa
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    generate-ddl: false
+server:
+  servlet:
+    context-path: /seven-winds-test
