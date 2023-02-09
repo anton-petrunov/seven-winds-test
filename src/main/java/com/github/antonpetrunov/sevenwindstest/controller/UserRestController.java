@@ -1,9 +1,9 @@
 package com.github.antonpetrunov.sevenwindstest.controller;
 
-import com.github.antonpetrunov.sevenwindstest.service.EntityNotFoundException;
-import com.github.antonpetrunov.sevenwindstest.model.User;
-import com.github.antonpetrunov.sevenwindstest.service.UserService;
 import com.github.antonpetrunov.sevenwindstest.dto.UserTo;
+import com.github.antonpetrunov.sevenwindstest.model.User;
+import com.github.antonpetrunov.sevenwindstest.service.EntityNotFoundException;
+import com.github.antonpetrunov.sevenwindstest.service.UserService;
 import com.github.antonpetrunov.sevenwindstest.util.UserUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,15 +23,15 @@ public class UserRestController {
     private UserService userService;
 
     @GetMapping
-    public List<UserTo> getAll() {
+    public List<UserTo> findAll() {
         log.info("getAll users");
-        return UserUtil.createTos(userService.getAll());
+        return UserUtil.createTos(userService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public UserTo get(@PathVariable Integer id) throws EntityNotFoundException {
+    public UserTo find(@PathVariable Integer id) throws EntityNotFoundException {
         log.info("get user {}", id);
-        return UserUtil.createTo(userService.get(id));
+        return UserUtil.createTo(userService.find(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

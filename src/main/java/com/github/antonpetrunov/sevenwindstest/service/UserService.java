@@ -12,11 +12,11 @@ import java.util.List;
 public class UserService {
     private UserRepository userRepository;
 
-    public List<User> getAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User get(Integer id) {
+    public User find(Integer id) {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(User.class, "id", id.toString()));
     }
 
